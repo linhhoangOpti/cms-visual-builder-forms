@@ -16,14 +16,19 @@ query VisualBuilder($key: String, $version: String) {
             grids: nodes {
               ... on CompositionStructureNode {
                 key
-                rows: nodes {
+                steps: nodes {
                   ... on CompositionStructureNode {
                     key
-                    columns: nodes {
+                    rows: nodes {
                       ... on CompositionStructureNode {
                         key
-                        elements: nodes {
-                          ...compositionComponentNode
+                        columns: nodes {
+                          ... on CompositionStructureNode {
+                            key
+                            elements: nodes {
+                              ...compositionComponentNode
+                            }
+                          }
                         }
                       }
                     }
@@ -39,6 +44,7 @@ query VisualBuilder($key: String, $version: String) {
     }
   }
 }
+
 `)
 
 interface VisualBuilderProps {
@@ -78,6 +84,8 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
 
     const experience: any = experiences[experiences.length - 1];
 
+    // console.log(experience);
+
     if (!experience) {
         return null;
     }
@@ -88,8 +96,8 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
                 {experience?.composition?.grids?.map((grid: any) =>
                     <div key={grid.key} className="relative w-full flex flex-col flex-nowrap justify-start vb:grid"
                          data-epi-block-id={grid.key}>
-                        {grid.rows?.map((row: any) =>
-                            <div key={row.key} className="flex-1 flex flex-row flex-nowrap justify-start vb:row">
+                        {grid.steps[0].rows?.map((row: any) =>
+                            <div key={row.key} className="flex-1 flex flex-row flex-nowrap justify-start vb:row gap-4">
                                 {row.columns?.map((column: any) => (
                                     <div className="flex-1 flex flex-col flex-nowrap justify-start vb:col" key={column.key}>
                                         {column.elements?.map((element: any) =>

@@ -1,17 +1,23 @@
 import { FragmentType, useFragment } from '../../graphql/fragment-masking'
 import { graphql } from '@/graphql'
-import ParagraphElementComponent from '../elements/ParagraphElementComponent'
+import TextboxElementComponent from '../elements/TextboxElementComponent'
+import TextareaElementComponent from '../elements/TextareaElementComponent'
+import SelectionElementComponent from '../elements/SelectionElementComponent'
+import SubmitElementComponent from '../elements/SubmitElementComponent'
 
 export const CompositionComponentNodeFragment = graphql(/* GraphQL */ `
-    fragment compositionComponentNode on CompositionComponentNode {
-        key
-        component {
-            _metadata {
-                types
-            }
-            ...paragraphElement
+fragment compositionComponentNode on CompositionComponentNode {
+    key
+    component {
+        _metadata {
+            types
         }
+      	...textboxElement
+        ...textareaElement
+        ...selectionElement
+        ...submitElement
     }
+}
 `)
 
 const CompositionComponentNodeComponent = (props: {
@@ -19,10 +25,18 @@ const CompositionComponentNodeComponent = (props: {
 }) => {
     const compositionComponentNode = useFragment(CompositionComponentNodeFragment, props.compositionComponentNode)
     const component = compositionComponentNode.component
+
     switch (component?.__typename) {
-        case "ParagraphElement":
-            return <ParagraphElementComponent paragraphElement={component}/>
+        case "OptiFormsTextboxElement":
+            return <TextboxElementComponent textboxElement={component}/>
+        case "OptiFormsTextareaElement":
+            return <TextareaElementComponent textareElement={component}/>
+        case "OptiFormsSelectionElement":
+            return <SelectionElementComponent selectionElement={component}/>
+        case "OptiFormsSubmitElement":
+            return <SubmitElementComponent submitElement={component}/>
         default:
+            console.log(`Unknown component type: ${component?.__typename}`);
             return <>NotImplementedException</>
     }
 }
