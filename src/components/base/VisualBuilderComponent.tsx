@@ -91,10 +91,10 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
     }
 
     return (
-        <div className="relative w-full flex-1 vb:outline">
-            <div className="relative w-full flex-1 vb:outline">
+        <div className="relative w-lg flex-1 vb:outline">
+            <div className="relative w-lg flex-1 vb:outline">
                 {experience?.composition?.grids?.map((grid: any) =>
-                    <div key={grid.key} className="relative w-full flex flex-col flex-nowrap justify-start vb:grid"
+                    <div key={grid.key} className="relative w-lg flex flex-col flex-nowrap justify-start vb:grid"
                          data-epi-block-id={grid.key}>
                         {grid.steps[0].rows?.map((row: any) =>
                             <div key={row.key} className="flex-1 flex flex-row flex-nowrap justify-start vb:row gap-4">

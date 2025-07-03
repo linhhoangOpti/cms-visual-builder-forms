@@ -26,6 +26,7 @@ const TextareaElementComponent = (props: {
             </div>
             <Textarea
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
+                placeholder={node.Placeholder}
             />
         </>
     )

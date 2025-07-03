@@ -25,6 +25,7 @@ const TextboxElementComponent = (props: {
             <Input
                 type='text'
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
+                placeholder={node.Placeholder}
             />
         </>
     )
