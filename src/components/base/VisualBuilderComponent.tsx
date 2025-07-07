@@ -14,22 +14,40 @@ query VisualBuilder($key: String, $version: String) {
     }) {
     items {      
       composition {
-            grids: nodes {
+        grids: nodes {
+          ... on CompositionStructureNode {
+            key
+            __typename
+            displayName
+            nodeType
+            layoutType
+            component {
+              	..._IComponent
+            }
+            nodes: nodes {
               ... on CompositionStructureNode {
                 key
-                steps: nodes {
+                __typename
+                displayName
+                nodeType
+                layoutType
+                nodes: nodes {
                   ... on CompositionStructureNode {
                     key
-                    rows: nodes {
+                    __typename
+                    displayName
+                    nodeType
+                    layoutType
+                    nodes: nodes {
+                      ...compositionComponentNode
                       ... on CompositionStructureNode {
                         key
-                        columns: nodes {
-                          ... on CompositionStructureNode {
-                            key
-                            elements: nodes {
-                              ...compositionComponentNode
-                            }
-                          }
+                        __typename
+                        displayName
+                        nodeType
+                        layoutType
+                        nodes: nodes {
+                          ...compositionComponentNode
                         }
                       }
                     }
@@ -38,6 +56,8 @@ query VisualBuilder($key: String, $version: String) {
               }
             }
           }
+        }
+      }
       _metadata {
         key
         version,        
@@ -46,11 +66,31 @@ query VisualBuilder($key: String, $version: String) {
   }
 }
 
+fragment _IComponent on _IComponent {
+  __typename
+  ...FormContainerData
+}
+
+fragment FormContainerData on OptiFormsContainerData {
+    SubmitConfirmationMessage
+    ResetConfirmationMessage
+    SubmitUrl {
+        type
+        default
+        hierarchical
+        internal
+        graph
+        base
+    }
+    Title
+    Description
+    ShowSummaryMessageAfterSubmission
+}
 `)
 
 interface VisualBuilderProps {
-  contentKey?: string;
-  version?: string;
+    contentKey?: string;
+    version?: string;
 }
 
 const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey }) => {
@@ -63,18 +103,19 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
         variables.key = contentKey;
     }
 
-    const { data, refetch } = useQuery(VisualBuilder, { 
-      variables: variables,
-      notifyOnNetworkStatusChange: true, });
+    const { data, refetch } = useQuery(VisualBuilder, {
+        variables: variables,
+        notifyOnNetworkStatusChange: true,
+    });
 
     useEffect(() => {
         onContentSaved(_ => {
-          const contentIdArray = _.contentLink.split('_')
-          if (contentIdArray.length > 1) {
-              version = contentIdArray[contentIdArray.length - 1]
-              variables.version = version;
-          }
-          refetch(variables);
+            const contentIdArray = _.contentLink.split('_')
+            if (contentIdArray.length > 1) {
+                version = contentIdArray[contentIdArray.length - 1]
+                variables.version = version;
+            }
+            refetch(variables);
         })
     }, []);
 
@@ -98,8 +139,8 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
             <div className="relative w-lg flex-1 vb:outline">
                 {experience?.composition?.grids?.map((grid: any) =>
                     <div key={grid.key} className="relative w-lg flex flex-col flex-nowrap justify-start vb:grid"
-                         data-epi-block-id={grid.key}>
-                        {RenderSectionView(grid.steps[0].rows)}
+                        data-epi-block-id={grid.key}>
+                        {RenderCompositionNode(grid)}
                     </div>
                 )}
             </div>
@@ -109,19 +150,64 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
 
 export default VisualBuilderComponent
 
-export const RenderSectionView = (rows: any) => {
-    return (
-      rows.map((row: any) =>
-        <div key={row.key} className="flex-1 flex flex-row flex-nowrap justify-start vb:row gap-4">
-            {row.columns?.map((column: any) => (
-                <div className="flex-1 flex flex-col flex-nowrap justify-start vb:col" key={column.key}>
-                    {column.elements?.map((element: any) =>
-                        <div data-epi-block-id={element?.key} key={element?.key}>
-                            <CompositionNodeComponent compositionComponentNode={element}/>
-                        </div>
-                    )}
-                </div>
-            ))}
-        </div>
-      ))
-}
+export const RenderCompositionNode = (node: any): JSX.Element | null => {
+    if (!node || !node.__typename) {
+        return null;
+    }
+
+    // Handle CompositionStructureNode with different nodeTypes
+    if (node.__typename === "CompositionStructureNode") {
+        const { key, nodeType, nodes } = node;
+
+        // Switch based on nodeType
+        switch (nodeType) {
+            case "section":
+                return (
+                    <div key={key} className="flex flex-col vb:section" data-epi-block-id={key}>
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                    </div>
+                );
+
+            case "step":
+                return (
+                    <div key={key} className="flex flex-col vb:step" data-epi-block-id={key}>
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                    </div>
+                );
+
+            case "row":
+                return (
+                    <div key={key} className="flex flex-row flex-wrap justify-start vb:row gap-4" data-epi-block-id={key}>
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                    </div>
+                );
+
+            case "column":
+                return (
+                    <div key={key} className="flex-1 flex flex-col flex-nowrap justify-start vb:col" data-epi-block-id={key}>
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                    </div>
+                );
+
+            default:
+                // Handle any other nodeType or fallback to generic structure
+                return (
+                    <div key={key} className="flex flex-col vb:generic" data-epi-block-id={key}>
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                    </div>
+                );
+        }
+    }
+
+    // Handle CompositionComponentNode (leaf elements)
+    if (node.__typename === "CompositionComponentNode" || node.component) {
+        return (
+            <div key={node.key} data-epi-block-id={node.key}>
+                <CompositionNodeComponent compositionComponentNode={node} />
+            </div>
+        );
+    }
+
+    // Fallback for unknown node types
+    return null;
+};

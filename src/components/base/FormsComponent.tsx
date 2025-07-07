@@ -2,9 +2,8 @@ import React, { FC, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { graphql } from '@/graphql'
-import CompositionNodeComponent from './CompositionNodeComponent'
 import { onContentSaved } from "@/helpers/onContentSaved";
-import { RenderSectionView } from './VisualBuilderComponent';
+import { RenderCompositionNode } from './VisualBuilderComponent';
 
 export const Forms = graphql(/* GraphQL */ `
 query Forms($key: String, $version: String) {
@@ -14,17 +13,42 @@ query Forms($key: String, $version: String) {
     }) {
     items {      
       composition {
-        steps: nodes {
+        grids: nodes {
           ... on CompositionStructureNode {
             key
-            rows: nodes {
+            __typename
+            displayName
+            nodeType
+            layoutType
+            component {
+              	..._IComponent
+            }
+            nodes: nodes {
               ... on CompositionStructureNode {
                 key
-                columns: nodes {
+                __typename
+                displayName
+                nodeType
+                layoutType
+                nodes: nodes {
                   ... on CompositionStructureNode {
                     key
-                    elements: nodes {
+                    __typename
+                    displayName
+                    nodeType
+                    layoutType
+                    nodes: nodes {
                       ...compositionComponentNode
+                      ... on CompositionStructureNode {
+                        key
+                        __typename
+                        displayName
+                        nodeType
+                        layoutType
+                        nodes: nodes {
+                          ...compositionComponentNode
+                        }
+                      }
                     }
                   }
                 }
@@ -44,8 +68,8 @@ query Forms($key: String, $version: String) {
 `)
 
 interface FormsProps {
-  contentKey?: string;
-  version?: string;
+    contentKey?: string;
+    version?: string;
 }
 
 const FormsComponent: FC<FormsProps> = ({ version, contentKey }) => {
@@ -58,18 +82,19 @@ const FormsComponent: FC<FormsProps> = ({ version, contentKey }) => {
         variables.key = contentKey;
     }
 
-    const { data, refetch } = useQuery(Forms, { 
-      variables: variables,
-      notifyOnNetworkStatusChange: true, });
+    const { data, refetch } = useQuery(Forms, {
+        variables: variables,
+        notifyOnNetworkStatusChange: true,
+    });
 
     useEffect(() => {
         onContentSaved(_ => {
-          const contentIdArray = _.contentLink.split('_')
-          if (contentIdArray.length > 1) {
-              version = contentIdArray[contentIdArray.length - 1]
-              variables.version = version;
-          }
-          refetch(variables);
+            const contentIdArray = _.contentLink.split('_')
+            if (contentIdArray.length > 1) {
+                version = contentIdArray[contentIdArray.length - 1]
+                variables.version = version;
+            }
+            refetch(variables);
         })
     }, []);
 
@@ -86,7 +111,12 @@ const FormsComponent: FC<FormsProps> = ({ version, contentKey }) => {
     return (
         <div className="relative w-lg flex-1 vb:outline">
             <div className="relative w-lg flex-1 vb:outline">
-              {RenderSectionView(form?.composition?.steps[0].rows)}
+                {form?.composition?.grids?.map((grid: any) =>
+                    <div key={grid.key} className="relative w-lg flex flex-col flex-nowrap justify-start vb:grid"
+                        data-epi-block-id={grid.key}>
+                        {RenderCompositionNode(grid)}
+                    </div>
+                )}
             </div>
         </div>
     )

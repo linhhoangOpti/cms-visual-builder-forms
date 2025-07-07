@@ -4,6 +4,7 @@ import TextboxElementComponent from '../elements/TextboxElementComponent'
 import TextareaElementComponent from '../elements/TextareaElementComponent'
 import SelectionElementComponent from '../elements/SelectionElementComponent'
 import SubmitElementComponent from '../elements/SubmitElementComponent'
+import ParagraphElementComponent from '../elements/ParagraphElementComponent'
 
 export const CompositionComponentNodeFragment = graphql(/* GraphQL */ `
 fragment compositionComponentNode on CompositionComponentNode {
@@ -16,6 +17,7 @@ fragment compositionComponentNode on CompositionComponentNode {
         ...textareaElement
         ...selectionElement
         ...submitElement
+        ...paragraphElement
     }
 }
 `)
@@ -35,6 +37,8 @@ const CompositionComponentNodeComponent = (props: {
             return <SelectionElementComponent selectionElement={component}/>
         case "OptiFormsSubmitElement":
             return <SubmitElementComponent submitElement={component}/>
+        case "ParagraphElement":
+            return <ParagraphElementComponent paragraphElement={component}/>
         default:
             console.log(`Unknown component type: ${component?.__typename}`);
             return <>NotImplementedException</>

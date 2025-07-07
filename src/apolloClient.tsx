@@ -7,6 +7,15 @@ const graphUrl = process.env.GRAPH_URL;
 const cmsUrl = process.env.CMS_URL;
 const preview_token = getPreviewToken();
 
+const possibleTypes = {
+    _IComponent: [
+        'OptiFormsContainerData',
+        '_Component',
+        '_Section'
+    ],
+};
+
+
 // In Preview Mode
 if (preview_token) {
     const httpLink = createHttpLink({
@@ -24,7 +33,7 @@ if (preview_token) {
 
     client = new ApolloClient({
         link: authLink.concat(httpLink),
-        cache: new InMemoryCache()
+        cache: new InMemoryCache({ possibleTypes }),
     });
 
     const communicationScript = document.createElement('script');
@@ -50,7 +59,7 @@ if (client === undefined) {
 
     client = new ApolloClient({
         link: authLink.concat(httpLink),
-        cache: new InMemoryCache()
+        cache: new InMemoryCache({ possibleTypes }),
     });
 }
 
