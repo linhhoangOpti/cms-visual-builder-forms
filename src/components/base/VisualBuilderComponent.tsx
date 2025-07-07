@@ -165,28 +165,28 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
             case "section":
                 return (
                     <div key={key} className="flex flex-col vb:section" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
                     </div>
                 );
 
             case "step":
                 return (
                     <div key={key} className="flex flex-col vb:step" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
                     </div>
                 );
 
             case "row":
                 return (
                     <div key={key} className="flex flex-row flex-wrap justify-start vb:row gap-4" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
                     </div>
                 );
 
             case "column":
                 return (
                     <div key={key} className="flex-1 flex flex-col flex-nowrap justify-start vb:col" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
                     </div>
                 );
 
@@ -194,7 +194,7 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
                 // Handle any other nodeType or fallback to generic structure
                 return (
                     <div key={key} className="flex flex-col vb:generic" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
                     </div>
                 );
         }
