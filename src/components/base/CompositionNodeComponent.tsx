@@ -23,22 +23,23 @@ fragment compositionComponentNode on CompositionComponentNode {
 `)
 
 const CompositionComponentNodeComponent = (props: {
-    compositionComponentNode: FragmentType<typeof CompositionComponentNodeFragment>
+    compositionComponentNode: FragmentType<typeof CompositionComponentNodeFragment>,
+    formState?: any
 }) => {
     const compositionComponentNode = useFragment(CompositionComponentNodeFragment, props.compositionComponentNode)
     const component = compositionComponentNode.component
 
     switch (component?.__typename) {
         case "OptiFormsTextboxElement":
-            return <TextboxElementComponent textboxElement={component}/>
+            return <TextboxElementComponent textboxElement={component} formState={props.formState}/>
         case "OptiFormsTextareaElement":
-            return <TextareaElementComponent textareElement={component}/>
+            return <TextareaElementComponent textareElement={component} formState={props.formState}/>
         case "OptiFormsSelectionElement":
-            return <SelectionElementComponent selectionElement={component}/>
+            return <SelectionElementComponent selectionElement={component} formState={props.formState}/>
         case "OptiFormsSubmitElement":
-            return <SubmitElementComponent submitElement={component}/>
+            return <SubmitElementComponent submitElement={component} formState={props.formState}/>
         case "ParagraphElement":
-            return <ParagraphElementComponent paragraphElement={component}/>
+            return <ParagraphElementComponent paragraphElement={component} />
         default:
             console.log(`Unknown component type: ${component?.__typename}`);
             return <>NotImplementedException</>

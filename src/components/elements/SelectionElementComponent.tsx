@@ -21,13 +21,14 @@ fragment selectionElement on OptiFormsSelectionElement {
 `)
 
 const SelectionElementComponent = (props: {
-  selectionElement: FragmentType<typeof SelectionElementComponentNodeFragment>
+  selectionElement: FragmentType<typeof SelectionElementComponentNodeFragment>,
+  formState?: any
 }) => {
   const node = useFragment(SelectionElementComponentNodeFragment, props.selectionElement)
   const Options = node.Options || []
   return (<>
     <Label>{node.Label}</Label>
-    <Select>
+    <Select onValueChange={(value) => props.formState[node.Label] = value}>
       <SelectTrigger>
         <SelectValue placeholder="Country" />
       </SelectTrigger>

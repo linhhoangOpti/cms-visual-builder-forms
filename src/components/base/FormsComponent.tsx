@@ -73,6 +73,7 @@ interface FormsProps {
 }
 
 const FormsComponent: FC<FormsProps> = ({ version, contentKey }) => {
+    const formState: any = {};
     const variables: Record<string, unknown> = {};
     if (version) {
         variables.version = version;
@@ -114,7 +115,7 @@ const FormsComponent: FC<FormsProps> = ({ version, contentKey }) => {
                 {form?.composition?.grids?.map((grid: any) =>
                     <div key={grid.key} className="relative w-lg flex flex-col flex-nowrap justify-start vb:grid"
                         data-epi-block-id={grid.key}>
-                        {RenderCompositionNode(grid)}
+                        {RenderCompositionNode(grid, formState)}
                     </div>
                 )}
             </div>

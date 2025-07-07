@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { graphql } from '@/graphql'
@@ -94,6 +94,7 @@ interface VisualBuilderProps {
 }
 
 const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey }) => {
+    const formState: any = {};
     const variables: Record<string, unknown> = {};
     if (version) {
         variables.version = version;
@@ -140,7 +141,7 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
                 {experience?.composition?.grids?.map((grid: any) =>
                     <div key={grid.key} className="relative w-lg flex flex-col flex-nowrap justify-start vb:grid"
                         data-epi-block-id={grid.key}>
-                        {RenderCompositionNode(grid)}
+                        {RenderCompositionNode(grid, formState)}
                     </div>
                 )}
             </div>
@@ -150,7 +151,7 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
 
 export default VisualBuilderComponent
 
-export const RenderCompositionNode = (node: any): JSX.Element | null => {
+export const RenderCompositionNode = (node: any, formState?: any): JSX.Element | null => {
     if (!node || !node.__typename) {
         return null;
     }
@@ -203,7 +204,7 @@ export const RenderCompositionNode = (node: any): JSX.Element | null => {
     if (node.__typename === "CompositionComponentNode" || node.component) {
         return (
             <div key={node.key} data-epi-block-id={node.key}>
-                <CompositionNodeComponent compositionComponentNode={node} />
+                <CompositionNodeComponent compositionComponentNode={node} formState={formState}/>
             </div>
         );
     }
