@@ -110,6 +110,8 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
 export default VisualBuilderComponent
 
 export const RenderSectionView = (rows: any) => {
+    const formState: any = {};
+
     return (
       rows.map((row: any) =>
         <div key={row.key} className="flex-1 flex flex-row flex-nowrap justify-start vb:row gap-4">
@@ -117,7 +119,7 @@ export const RenderSectionView = (rows: any) => {
                 <div className="flex-1 flex flex-col flex-nowrap justify-start vb:col" key={column.key}>
                     {column.elements?.map((element: any) =>
                         <div data-epi-block-id={element?.key} key={element?.key}>
-                            <CompositionNodeComponent compositionComponentNode={element}/>
+                            <CompositionNodeComponent compositionComponentNode={element} formState={formState}/>
                         </div>
                     )}
                 </div>

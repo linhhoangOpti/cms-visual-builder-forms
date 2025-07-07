@@ -15,19 +15,21 @@ fragment textboxElement on OptiFormsTextboxElement {
 `)
 
 const TextboxElementComponent = (props: {
-    textboxElement: FragmentType<typeof TextboxComponentNodeFragment>
+    textboxElement: FragmentType<typeof TextboxComponentNodeFragment>,
+    formState?: any
 }) => {
     const node = useFragment(TextboxComponentNodeFragment, props.textboxElement)
     
     return (
-        <>
+        <div data-epi-block-id={node?.key} key={node?.key}>
             <Label>{node.Label}</Label>
             <Input
                 type='text'
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
                 placeholder={node.Placeholder}
+                onChange={(e) => props.formState[node.Label] = e.target.value }
             />
-        </>
+        </div>
     )
 }
 

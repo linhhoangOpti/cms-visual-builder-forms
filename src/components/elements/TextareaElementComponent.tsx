@@ -15,7 +15,8 @@ fragment textareaElement on OptiFormsTextareaElement {
 `)
 
 const TextareaElementComponent = (props: {
-    textareElement: FragmentType<typeof TextareaComponentNodeFragment>
+    textareElement: FragmentType<typeof TextareaComponentNodeFragment>,
+    formState?: any
 }) => {
     const node = useFragment(TextareaComponentNodeFragment, props.textareElement)
     
@@ -27,6 +28,7 @@ const TextareaElementComponent = (props: {
             <Textarea
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
                 placeholder={node.Placeholder}
+                onChange={(e) => props.formState[node.Label] = e.target.value}
             />
         </>
     )
