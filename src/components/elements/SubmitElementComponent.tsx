@@ -22,7 +22,7 @@ const SubmitElementComponent = (props: {
             <div><br /></div>
             <Button onClick={(e) => {
                 console.log(props.formState)
-                axios.post('https://localhost:7207/api/formsubmission', props.formState)
+                axios.post((window as any).submitUrl || 'https://localhost:7207/api/formsubmission', props.formState)
                 .then(response => {
                     alert('Form submitted successfully!');
                 })
