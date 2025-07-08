@@ -157,7 +157,7 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
     }
     const { layoutType } = node;
     if (layoutType === "form") {
-        window.submitUrl = node.component.SubmitUrl.default;
+        // window.submitUrl = node.component.SubmitUrl.default;
     }
 
     // Handle CompositionStructureNode with different nodeTypes

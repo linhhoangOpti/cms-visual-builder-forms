@@ -28,7 +28,7 @@ const SelectionElementComponent = (props: {
   const Options = node.Options || []
   return (<>
     <Label>{node.Label}</Label>
-    <Select onValueChange={(value) => props.formState[node.Label] = value}>
+    <Select onValueChange={(value) => props.formState[node.Label!] = value}>
       <SelectTrigger>
         <SelectValue placeholder="Country" />
       </SelectTrigger>

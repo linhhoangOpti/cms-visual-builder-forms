@@ -21,13 +21,13 @@ const TextboxElementComponent = (props: {
     const node = useFragment(TextboxComponentNodeFragment, props.textboxElement)
     
     return (
-        <div data-epi-block-id={node?.key} key={node?.key}>
+        <div>
             <Label>{node.Label}</Label>
             <Input
                 type='text'
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
-                placeholder={node.Placeholder}
-                onChange={(e) => props.formState[node.Label] = e.target.value }
+                placeholder={node.Placeholder ?? ''}
+                onChange={(e) => props.formState[node.Label!] = e.target.value }
             />
         </div>
     )
