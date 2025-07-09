@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { isRequiredValidator } from '@/helpers/validatorHelper'
 
 export const SelectionElementComponentNodeFragment = graphql(/* GraphQL */ `
 fragment selectionElement on OptiFormsSelectionElement {
@@ -27,7 +28,7 @@ const SelectionElementComponent = (props: {
   const node = useFragment(SelectionElementComponentNodeFragment, props.selectionElement)
   const Options = node.Options || []
   return (<>
-    <Label>{node.Label}</Label>
+    <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
     <Select onValueChange={(value) => props.formState[node.Label] = value}>
       <SelectTrigger>
         <SelectValue placeholder="Country" />

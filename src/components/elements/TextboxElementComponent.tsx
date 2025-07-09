@@ -2,6 +2,7 @@ import { FragmentType, useFragment } from '../../graphql/fragment-masking'
 import { graphql } from '@/graphql'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
+import { isRequiredValidator } from '@/helpers/validatorHelper'
 
 export const TextboxComponentNodeFragment = graphql(/* GraphQL */ `
 fragment textboxElement on OptiFormsTextboxElement {
@@ -22,12 +23,12 @@ const TextboxElementComponent = (props: {
     
     return (
         <div data-epi-block-id={node?.key} key={node?.key}>
-            <Label>{node.Label}</Label>
+            <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
             <Input
                 type='text'
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
                 placeholder={node.Placeholder}
-                onChange={(e) => props.formState[node.Label] = e.target.value }
+                onChange={(e) => props.formState[node.Label] = e.target.value}
             />
         </div>
     )

@@ -2,6 +2,7 @@ import { FragmentType, useFragment } from '../../graphql/fragment-masking'
 import { graphql } from '@/graphql'
 import { Textarea } from '../ui/textarea'
 import { Label } from '../ui/label'
+import { isRequiredValidator } from '@/helpers/validatorHelper'
 
 export const TextareaComponentNodeFragment = graphql(/* GraphQL */ `
 fragment textareaElement on OptiFormsTextareaElement {
@@ -22,9 +23,7 @@ const TextareaElementComponent = (props: {
     
     return (
         <>
-            <div >
-                <br />
-            </div>
+            <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
             <Textarea
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
                 placeholder={node.Placeholder}
