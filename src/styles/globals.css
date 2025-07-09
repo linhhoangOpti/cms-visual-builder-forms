@@ -104,3 +104,6 @@ body {
 .form-element-required {
     @apply text-red-500;
 }
+h2 {
+  font-size: 30px;
+}

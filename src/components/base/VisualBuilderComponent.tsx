@@ -155,6 +155,11 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
     if (!node || !node.__typename) {
         return null;
     }
+    const { layoutType } = node;
+    if (layoutType === "form") {
+        const w = window as any;
+        w.submitUrl = node.component.SubmitUrl.default;
+    }
 
     // Handle CompositionStructureNode with different nodeTypes
     if (node.__typename === "CompositionStructureNode") {

@@ -29,7 +29,8 @@ const SelectionElementComponent = (props: {
   const Options = node.Options || []
   return (<>
     <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
-    <Select onValueChange={(value) => props.formState[node.Label] = value}>
+    <Select onValueChange={(value) => props.formState[node.Label!] = value}>
+
       <SelectTrigger>
         <SelectValue placeholder="Country" />
       </SelectTrigger>
