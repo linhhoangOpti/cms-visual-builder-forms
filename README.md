@@ -592,9 +592,9 @@ example we will use `OptiFormsTextboxElement` and `OptiFormsSubmitElement`.
 ### Graphql generation
 
 Now let's go back to our Next.js application and let's try to run the codegen script.
-First you will need to fill in your GRAPH_SINGLE_KEY into `.env.local` file (create it if it does not exist)
+First you will need to fill in your GRAPH_SINGLE_KEY and GRAPH_URL into `.env.local` file (create it if it does not exist). CMS_URL is also required to communicate with Visual Builder.
 
-![fill GRAPH_SINGLE_KEY](docs/configuration_anonymized_key.jpg)
+![fill GRAPH_SINGLE_KEY](docs/configuration_anonymized_key.png)
 
 > yarn codegen
 
