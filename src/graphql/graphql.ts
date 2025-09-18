@@ -32,6 +32,7 @@ export type BlankExperience = IData & _IContent & _IExperience & _IPage & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -103,6 +104,7 @@ export type BlankSection = IData & _IComponent & _IContent & _ISection & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -553,6 +555,7 @@ export type Data = IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -661,6 +664,7 @@ export type GenericMedia = IData & _IContent & _IMedia & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1125,6 +1129,7 @@ export type IData = {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1239,6 +1244,7 @@ export type ImageMedia = IData & _IContent & _IImage & _IMedia & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1487,6 +1493,7 @@ export type OptiFormsChoiceElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1559,6 +1566,7 @@ export type OptiFormsContainerData = IData & _IComponent & _IContent & _ISection
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -1640,6 +1648,7 @@ export type OptiFormsNumberElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1712,6 +1721,7 @@ export type OptiFormsRangeElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1780,6 +1790,7 @@ export type OptiFormsResetElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1841,6 +1852,7 @@ export type OptiFormsSelectionElement = IData & _IComponent & _IContent & {
   AutoComplete?: Maybe<Scalars['String']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Options?: Maybe<Scalars['JSON']['output']>;
+  Placeholder?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -1852,6 +1864,7 @@ export type OptiFormsSelectionElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1920,6 +1933,7 @@ export type OptiFormsSubmitElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1992,6 +2006,7 @@ export type OptiFormsTextareaElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2064,6 +2079,7 @@ export type OptiFormsTextboxElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2135,6 +2151,7 @@ export type OptiFormsUrlElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2212,6 +2229,7 @@ export type ParagraphElement = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2310,6 +2328,8 @@ export type QueryBlankExperienceArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankExperienceOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankExperienceWhereInput>;
 };
@@ -2322,6 +2342,8 @@ export type QueryBlankSectionArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankSectionOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
 };
@@ -2334,6 +2356,8 @@ export type QueryDataArgs = {
   locale?: InputMaybe<Array<InputMaybe<System_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<DataWhereInput>;
 };
@@ -2346,6 +2370,8 @@ export type QueryGenericMediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GenericMediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<GenericMediaWhereInput>;
 };
@@ -2358,6 +2384,8 @@ export type QueryImageMediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageMediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageMediaWhereInput>;
 };
@@ -2370,6 +2398,8 @@ export type QueryOptiFormsChoiceElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsChoiceElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsChoiceElementWhereInput>;
 };
@@ -2382,6 +2412,8 @@ export type QueryOptiFormsContainerDataArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsContainerDataOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsContainerDataWhereInput>;
 };
@@ -2394,6 +2426,8 @@ export type QueryOptiFormsNumberElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsNumberElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsNumberElementWhereInput>;
 };
@@ -2406,6 +2440,8 @@ export type QueryOptiFormsRangeElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsRangeElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsRangeElementWhereInput>;
 };
@@ -2418,6 +2454,8 @@ export type QueryOptiFormsResetElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsResetElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsResetElementWhereInput>;
 };
@@ -2430,6 +2468,8 @@ export type QueryOptiFormsSelectionElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSelectionElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSelectionElementWhereInput>;
 };
@@ -2442,6 +2482,8 @@ export type QueryOptiFormsSubmitElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSubmitElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSubmitElementWhereInput>;
 };
@@ -2454,6 +2496,8 @@ export type QueryOptiFormsTextareaElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextareaElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextareaElementWhereInput>;
 };
@@ -2466,6 +2510,8 @@ export type QueryOptiFormsTextboxElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextboxElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextboxElementWhereInput>;
 };
@@ -2478,6 +2524,8 @@ export type QueryOptiFormsUrlElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsUrlElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsUrlElementWhereInput>;
 };
@@ -2490,6 +2538,8 @@ export type QueryParagraphElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ParagraphElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ParagraphElementWhereInput>;
 };
@@ -2502,6 +2552,8 @@ export type QuerySysContentFolderArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SysContentFolderOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<SysContentFolderWhereInput>;
 };
@@ -2514,6 +2566,8 @@ export type QueryVideoMediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoMediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoMediaWhereInput>;
 };
@@ -2526,6 +2580,8 @@ export type Query_ComponentArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ComponentOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ComponentWhereInput>;
 };
@@ -2538,6 +2594,8 @@ export type Query_ContentArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ContentOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ContentWhereInput>;
 };
@@ -2550,6 +2608,8 @@ export type Query_ExperienceArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ExperienceOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ExperienceWhereInput>;
 };
@@ -2562,6 +2622,8 @@ export type Query_FolderArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_FolderOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_FolderWhereInput>;
 };
@@ -2574,6 +2636,8 @@ export type Query_ImageArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ImageOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ImageWhereInput>;
 };
@@ -2586,6 +2650,8 @@ export type Query_MediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_MediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_MediaWhereInput>;
 };
@@ -2598,6 +2664,8 @@ export type Query_PageArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_PageOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_PageWhereInput>;
 };
@@ -2610,6 +2678,8 @@ export type Query_SectionArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_SectionOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_SectionWhereInput>;
 };
@@ -2622,6 +2692,8 @@ export type Query_VideoArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_VideoOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_VideoWhereInput>;
 };
@@ -2665,6 +2737,8 @@ export type QueryRefBlankExperienceArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankExperienceOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankExperienceWhereInput>;
 };
@@ -2677,6 +2751,8 @@ export type QueryRefBlankSectionArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankSectionOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
 };
@@ -2689,6 +2765,8 @@ export type QueryRefDataArgs = {
   locale?: InputMaybe<Array<InputMaybe<System_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<DataWhereInput>;
 };
@@ -2701,6 +2779,8 @@ export type QueryRefGenericMediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GenericMediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<GenericMediaWhereInput>;
 };
@@ -2713,6 +2793,8 @@ export type QueryRefImageMediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageMediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageMediaWhereInput>;
 };
@@ -2725,6 +2807,8 @@ export type QueryRefOptiFormsChoiceElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsChoiceElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsChoiceElementWhereInput>;
 };
@@ -2737,6 +2821,8 @@ export type QueryRefOptiFormsContainerDataArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsContainerDataOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsContainerDataWhereInput>;
 };
@@ -2749,6 +2835,8 @@ export type QueryRefOptiFormsNumberElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsNumberElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsNumberElementWhereInput>;
 };
@@ -2761,6 +2849,8 @@ export type QueryRefOptiFormsRangeElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsRangeElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsRangeElementWhereInput>;
 };
@@ -2773,6 +2863,8 @@ export type QueryRefOptiFormsResetElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsResetElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsResetElementWhereInput>;
 };
@@ -2785,6 +2877,8 @@ export type QueryRefOptiFormsSelectionElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSelectionElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSelectionElementWhereInput>;
 };
@@ -2797,6 +2891,8 @@ export type QueryRefOptiFormsSubmitElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSubmitElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSubmitElementWhereInput>;
 };
@@ -2809,6 +2905,8 @@ export type QueryRefOptiFormsTextareaElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextareaElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextareaElementWhereInput>;
 };
@@ -2821,6 +2919,8 @@ export type QueryRefOptiFormsTextboxElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextboxElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextboxElementWhereInput>;
 };
@@ -2833,6 +2933,8 @@ export type QueryRefOptiFormsUrlElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsUrlElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsUrlElementWhereInput>;
 };
@@ -2845,6 +2947,8 @@ export type QueryRefParagraphElementArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ParagraphElementOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ParagraphElementWhereInput>;
 };
@@ -2857,6 +2961,8 @@ export type QueryRefSysContentFolderArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SysContentFolderOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<SysContentFolderWhereInput>;
 };
@@ -2869,6 +2975,8 @@ export type QueryRefVideoMediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoMediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoMediaWhereInput>;
 };
@@ -2881,6 +2989,8 @@ export type QueryRef_ComponentArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ComponentOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ComponentWhereInput>;
 };
@@ -2893,6 +3003,8 @@ export type QueryRef_ContentArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ContentOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ContentWhereInput>;
 };
@@ -2905,6 +3017,8 @@ export type QueryRef_ExperienceArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ExperienceOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ExperienceWhereInput>;
 };
@@ -2917,6 +3031,8 @@ export type QueryRef_FolderArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_FolderOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_FolderWhereInput>;
 };
@@ -2929,6 +3045,8 @@ export type QueryRef_ImageArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ImageOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ImageWhereInput>;
 };
@@ -2941,6 +3059,8 @@ export type QueryRef_MediaArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_MediaOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_MediaWhereInput>;
 };
@@ -2953,6 +3073,8 @@ export type QueryRef_PageArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_PageOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_PageWhereInput>;
 };
@@ -2965,6 +3087,8 @@ export type QueryRef_SectionArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_SectionOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_SectionWhereInput>;
 };
@@ -2977,6 +3101,8 @@ export type QueryRef_VideoArgs = {
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_VideoOrderByInput>;
   skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_VideoWhereInput>;
 };
@@ -3107,6 +3233,7 @@ export type SysContentFolder = IData & _IContent & _IFolder & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3185,6 +3312,7 @@ export type VideoMedia = IData & _IContent & _IMedia & _IVideo & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3251,6 +3379,7 @@ export type _Component = IData & _IComponent & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3317,6 +3446,7 @@ export type _Content = IData & _IContent & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3383,6 +3513,7 @@ export type _Experience = IData & _IContent & _IExperience & _IPage & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -3454,6 +3585,7 @@ export type _Folder = IData & _IContent & _IFolder & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3519,6 +3651,7 @@ export type _IComponent = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3564,6 +3697,7 @@ export type _IContent = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3586,6 +3720,7 @@ export type _IExperience = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -3609,6 +3744,7 @@ export type _IFolder = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3631,6 +3767,7 @@ export type _IImage = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3653,6 +3790,7 @@ export type _IMedia = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3675,6 +3813,7 @@ export type _IPage = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3697,6 +3836,7 @@ export type _ISection = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -3720,6 +3860,7 @@ export type _IVideo = {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3743,6 +3884,7 @@ export type _Image = IData & _IContent & _IImage & _IMedia & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3809,6 +3951,7 @@ export type _Media = IData & _IContent & _IMedia & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3875,6 +4018,7 @@ export type _Page = IData & _IContent & _IPage & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3941,6 +4085,7 @@ export type _Section = IData & _IComponent & _IContent & _ISection & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
 
@@ -4012,6 +4157,7 @@ export type _Video = IData & _IContent & _IMedia & _IVideo & {
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -4071,6 +4217,11 @@ export enum System_Locales {
   All = 'ALL',
   Neutral = 'NEUTRAL'
 }
+
+export type UsePinnedInput = {
+  collectionId?: InputMaybe<Scalars['String']['input']>;
+  phrase?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type CompositionComponentNodeFragment = { __typename?: 'CompositionComponentNode', key?: string | null, component?: { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsChoiceElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsContainerData', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsNumberElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsRangeElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsResetElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | (
     { __typename?: 'OptiFormsSelectionElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null }
@@ -4286,7 +4437,7 @@ export type FormContainerDataFragment = { __typename?: 'OptiFormsContainerData',
 
 export type ParagraphElementFragment = { __typename?: 'ParagraphElement', Text?: { __typename?: 'RichText', html?: string | null } | null } & { ' $fragmentName'?: 'ParagraphElementFragment' };
 
-export type SelectionElementFragment = { __typename?: 'OptiFormsSelectionElement', Label?: string | null, Tooltip?: string | null, AutoComplete?: string | null, Validators?: any | null, Options?: any | null } & { ' $fragmentName'?: 'SelectionElementFragment' };
+export type SelectionElementFragment = { __typename?: 'OptiFormsSelectionElement', Label?: string | null, Tooltip?: string | null, AutoComplete?: string | null, Placeholder?: string | null, Validators?: any | null, Options?: any | null } & { ' $fragmentName'?: 'SelectionElementFragment' };
 
 export type SubmitElementFragment = { __typename?: 'OptiFormsSubmitElement', Label?: string | null, Tooltip?: string | null } & { ' $fragmentName'?: 'SubmitElementFragment' };
 
@@ -4296,11 +4447,11 @@ export type TextboxElementFragment = { __typename?: 'OptiFormsTextboxElement', L
 
 export const TextboxElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}}]} as unknown as DocumentNode<TextboxElementFragment, unknown>;
 export const TextareaElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}}]} as unknown as DocumentNode<TextareaElementFragment, unknown>;
-export const SelectionElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}}]} as unknown as DocumentNode<SelectionElementFragment, unknown>;
+export const SelectionElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}}]} as unknown as DocumentNode<SelectionElementFragment, unknown>;
 export const SubmitElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}}]} as unknown as DocumentNode<SubmitElementFragment, unknown>;
 export const ParagraphElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<ParagraphElementFragment, unknown>;
-export const CompositionComponentNodeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<CompositionComponentNodeFragment, unknown>;
+export const CompositionComponentNodeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<CompositionComponentNodeFragment, unknown>;
 export const FormContainerDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}}]} as unknown as DocumentNode<FormContainerDataFragment, unknown>;
 export const _IComponentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}}]} as unknown as DocumentNode<_IComponentFragment, unknown>;
-export const FormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Forms"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"OptiFormsContainerData"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<FormsQuery, FormsQueryVariables>;
-export const VisualBuilderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"VisualBuilder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_Experience"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<VisualBuilderQuery, VisualBuilderQueryVariables>;
+export const FormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Forms"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"OptiFormsContainerData"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<FormsQuery, FormsQueryVariables>;
+export const VisualBuilderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"VisualBuilder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_Experience"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<VisualBuilderQuery, VisualBuilderQueryVariables>;
