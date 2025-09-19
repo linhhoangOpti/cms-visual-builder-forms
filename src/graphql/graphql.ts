@@ -390,6 +390,83 @@ export type CompositionStructureNodeWhereInput = {
   type?: InputMaybe<StringFilterInput>;
 };
 
+export type Condition = IData & _IComponent & _IContent & {
+  __typename?: 'Condition';
+  ComparisonOperator?: Maybe<Scalars['String']['output']>;
+  ComparisonValue?: Maybe<Scalars['String']['output']>;
+  DependsOnField?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type Condition_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Condition_LinkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ConditionAutocomplete = {
+  __typename?: 'ConditionAutocomplete';
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type ConditionFacet = {
+  __typename?: 'ConditionFacet';
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type ConditionOrderByInput = {
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ConditionOutput = {
+  __typename?: 'ConditionOutput';
+  autocomplete?: Maybe<ConditionAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ConditionFacet>;
+  item?: Maybe<Condition>;
+  items?: Maybe<Array<Maybe<Condition>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ConditionOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ConditionProperty = {
+  __typename?: 'ConditionProperty';
+  ComparisonOperator?: Maybe<Scalars['String']['output']>;
+  ComparisonValue?: Maybe<Scalars['String']['output']>;
+  DependsOnField?: Maybe<Scalars['String']['output']>;
+};
+
+export type ConditionWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<ConditionWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ConditionWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ConditionWhereInput>>>;
+};
+
 export type ContentMetadata = IContentMetadata & {
   __typename?: 'ContentMetadata';
   changeset?: Maybe<Scalars['String']['output']>;
@@ -1480,8 +1557,11 @@ export type NumberFactor = {
 export type OptiFormsChoiceElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsChoiceElement';
   AllowMultiSelect?: Maybe<Scalars['Boolean']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
   Options?: Maybe<Scalars['JSON']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -1513,10 +1593,20 @@ export type OptiFormsChoiceElementAutocomplete = {
 
 export type OptiFormsChoiceElementFacet = {
   __typename?: 'OptiFormsChoiceElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsChoiceElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsChoiceElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1541,6 +1631,7 @@ export type OptiFormsChoiceElementOutputTotalArgs = {
 };
 
 export type OptiFormsChoiceElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -1634,9 +1725,12 @@ export type OptiFormsContainerDataWhereInput = {
 export type OptiFormsNumberElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsNumberElement';
   AutoComplete?: Maybe<Scalars['String']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -1668,10 +1762,20 @@ export type OptiFormsNumberElementAutocomplete = {
 
 export type OptiFormsNumberElementFacet = {
   __typename?: 'OptiFormsNumberElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsNumberElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsNumberElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1696,6 +1800,7 @@ export type OptiFormsNumberElementOutputTotalArgs = {
 };
 
 export type OptiFormsNumberElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -1706,11 +1811,14 @@ export type OptiFormsNumberElementWhereInput = {
 
 export type OptiFormsRangeElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsRangeElement';
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Increment?: Maybe<Scalars['Int']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Max?: Maybe<Scalars['Int']['output']>;
   Min?: Maybe<Scalars['Int']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
@@ -1741,10 +1849,20 @@ export type OptiFormsRangeElementAutocomplete = {
 
 export type OptiFormsRangeElementFacet = {
   __typename?: 'OptiFormsRangeElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsRangeElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsRangeElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1769,6 +1887,7 @@ export type OptiFormsRangeElementOutputTotalArgs = {
 };
 
 export type OptiFormsRangeElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -1779,7 +1898,10 @@ export type OptiFormsRangeElementWhereInput = {
 
 export type OptiFormsResetElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsResetElement';
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
@@ -1810,10 +1932,20 @@ export type OptiFormsResetElementAutocomplete = {
 
 export type OptiFormsResetElementFacet = {
   __typename?: 'OptiFormsResetElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsResetElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsResetElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1838,6 +1970,7 @@ export type OptiFormsResetElementOutputTotalArgs = {
 };
 
 export type OptiFormsResetElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -1850,9 +1983,12 @@ export type OptiFormsSelectionElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsSelectionElement';
   AllowMultiSelect?: Maybe<Scalars['Boolean']['output']>;
   AutoComplete?: Maybe<Scalars['String']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
   Options?: Maybe<Scalars['JSON']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -1884,10 +2020,20 @@ export type OptiFormsSelectionElementAutocomplete = {
 
 export type OptiFormsSelectionElementFacet = {
   __typename?: 'OptiFormsSelectionElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsSelectionElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsSelectionElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1912,6 +2058,7 @@ export type OptiFormsSelectionElementOutputTotalArgs = {
 };
 
 export type OptiFormsSelectionElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -1922,7 +2069,10 @@ export type OptiFormsSelectionElementWhereInput = {
 
 export type OptiFormsSubmitElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsSubmitElement';
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
@@ -1953,10 +2103,20 @@ export type OptiFormsSubmitElementAutocomplete = {
 
 export type OptiFormsSubmitElementFacet = {
   __typename?: 'OptiFormsSubmitElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsSubmitElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsSubmitElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1981,6 +2141,7 @@ export type OptiFormsSubmitElementOutputTotalArgs = {
 };
 
 export type OptiFormsSubmitElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -1992,9 +2153,12 @@ export type OptiFormsSubmitElementWhereInput = {
 export type OptiFormsTextareaElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsTextareaElement';
   AutoComplete?: Maybe<Scalars['String']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -2026,10 +2190,20 @@ export type OptiFormsTextareaElementAutocomplete = {
 
 export type OptiFormsTextareaElementFacet = {
   __typename?: 'OptiFormsTextareaElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsTextareaElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsTextareaElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2054,6 +2228,7 @@ export type OptiFormsTextareaElementOutputTotalArgs = {
 };
 
 export type OptiFormsTextareaElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -2065,9 +2240,12 @@ export type OptiFormsTextareaElementWhereInput = {
 export type OptiFormsTextboxElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsTextboxElement';
   AutoComplete?: Maybe<Scalars['String']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -2099,10 +2277,20 @@ export type OptiFormsTextboxElementAutocomplete = {
 
 export type OptiFormsTextboxElementFacet = {
   __typename?: 'OptiFormsTextboxElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsTextboxElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsTextboxElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2127,6 +2315,7 @@ export type OptiFormsTextboxElementOutputTotalArgs = {
 };
 
 export type OptiFormsTextboxElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -2137,9 +2326,12 @@ export type OptiFormsTextboxElementWhereInput = {
 
 export type OptiFormsUrlElement = IData & _IComponent & _IContent & {
   __typename?: 'OptiFormsUrlElement';
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<ConditionProperty>>>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -2171,10 +2363,20 @@ export type OptiFormsUrlElementAutocomplete = {
 
 export type OptiFormsUrlElementFacet = {
   __typename?: 'OptiFormsUrlElementFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+
+export type OptiFormsUrlElementFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
 export type OptiFormsUrlElementOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2199,6 +2401,7 @@ export type OptiFormsUrlElementOutputTotalArgs = {
 };
 
 export type OptiFormsUrlElementWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
@@ -2293,6 +2496,7 @@ export type Query = {
   __typename?: 'Query';
   BlankExperience?: Maybe<BlankExperienceOutput>;
   BlankSection?: Maybe<BlankSectionOutput>;
+  Condition?: Maybe<ConditionOutput>;
   Data?: Maybe<DataOutput>;
   GenericMedia?: Maybe<GenericMediaOutput>;
   ImageMedia?: Maybe<ImageMediaOutput>;
@@ -2346,6 +2550,20 @@ export type QueryBlankSectionArgs = {
   usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
+};
+
+
+export type QueryConditionArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ConditionOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ConditionWhereInput>;
 };
 
 
@@ -2702,6 +2920,7 @@ export type QueryRef = {
   __typename?: 'QueryRef';
   BlankExperience?: Maybe<BlankExperienceOutput>;
   BlankSection?: Maybe<BlankSectionOutput>;
+  Condition?: Maybe<ConditionOutput>;
   Data?: Maybe<DataOutput>;
   GenericMedia?: Maybe<GenericMediaOutput>;
   ImageMedia?: Maybe<ImageMediaOutput>;
@@ -2755,6 +2974,20 @@ export type QueryRefBlankSectionArgs = {
   usePinned?: InputMaybe<UsePinnedInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
+};
+
+
+export type QueryRefConditionArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ConditionOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  track?: InputMaybe<Scalars['String']['input']>;
+  usePinned?: InputMaybe<UsePinnedInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<ConditionWhereInput>;
 };
 
 
@@ -4223,7 +4456,7 @@ export type UsePinnedInput = {
   phrase?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CompositionComponentNodeFragment = { __typename?: 'CompositionComponentNode', key?: string | null, component?: { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsChoiceElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsContainerData', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsNumberElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsRangeElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsResetElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | (
+export type CompositionComponentNodeFragment = { __typename?: 'CompositionComponentNode', key?: string | null, component?: { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Condition', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsChoiceElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsContainerData', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsNumberElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsRangeElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsResetElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | (
     { __typename?: 'OptiFormsSelectionElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null }
     & { ' $fragmentRefs'?: { 'SelectionElementFragment': SelectionElementFragment } }
   ) | (
@@ -4249,6 +4482,9 @@ export type FormsQueryVariables = Exact<{
 export type FormsQuery = { __typename?: 'Query', OptiFormsContainerData?: { __typename?: 'OptiFormsContainerDataOutput', items?: Array<{ __typename?: 'OptiFormsContainerData', composition?: { __typename?: 'CompositionStructureNode', grids?: Array<{ __typename?: 'CompositionComponentNode' } | { __typename?: 'CompositionNode' } | { __typename: 'CompositionStructureNode', key?: string | null, displayName?: string | null, nodeType?: string | null, layoutType?: string | null, component?: (
             { __typename?: 'BlankSection' }
             & { ' $fragmentRefs'?: { '_IComponent_BlankSection_Fragment': _IComponent_BlankSection_Fragment } }
+          ) | (
+            { __typename?: 'Condition' }
+            & { ' $fragmentRefs'?: { '_IComponent_Condition_Fragment': _IComponent_Condition_Fragment } }
           ) | (
             { __typename?: 'OptiFormsChoiceElement' }
             & { ' $fragmentRefs'?: { '_IComponent_OptiFormsChoiceElement_Fragment': _IComponent_OptiFormsChoiceElement_Fragment } }
@@ -4306,6 +4542,9 @@ export type VisualBuilderQuery = { __typename?: 'Query', _Experience?: { __typen
             { __typename?: 'BlankSection' }
             & { ' $fragmentRefs'?: { '_IComponent_BlankSection_Fragment': _IComponent_BlankSection_Fragment } }
           ) | (
+            { __typename?: 'Condition' }
+            & { ' $fragmentRefs'?: { '_IComponent_Condition_Fragment': _IComponent_Condition_Fragment } }
+          ) | (
             { __typename?: 'OptiFormsChoiceElement' }
             & { ' $fragmentRefs'?: { '_IComponent_OptiFormsChoiceElement_Fragment': _IComponent_OptiFormsChoiceElement_Fragment } }
           ) | (
@@ -4353,6 +4592,9 @@ export type VisualBuilderQuery = { __typename?: 'Query', _Experience?: { __typen
                 ) | { __typename?: 'CompositionNode' } | { __typename?: 'CompositionStructureNode' } | null> | null } | null> | null } | null> | null } | null> | null } | null> | null } | null, _metadata?: { __typename?: 'ContentMetadata', key?: string | null, version?: string | null } | { __typename?: 'InstanceMetadata', key?: string | null, version?: string | null } | { __typename?: 'ItemMetadata', key?: string | null, version?: string | null } | { __typename?: 'MediaMetadata', key?: string | null, version?: string | null } | null } | { __typename?: '_Experience', composition?: { __typename?: 'CompositionStructureNode', grids?: Array<{ __typename?: 'CompositionComponentNode' } | { __typename?: 'CompositionNode' } | { __typename: 'CompositionStructureNode', key?: string | null, displayName?: string | null, nodeType?: string | null, layoutType?: string | null, component?: (
             { __typename?: 'BlankSection' }
             & { ' $fragmentRefs'?: { '_IComponent_BlankSection_Fragment': _IComponent_BlankSection_Fragment } }
+          ) | (
+            { __typename?: 'Condition' }
+            & { ' $fragmentRefs'?: { '_IComponent_Condition_Fragment': _IComponent_Condition_Fragment } }
           ) | (
             { __typename?: 'OptiFormsChoiceElement' }
             & { ' $fragmentRefs'?: { '_IComponent_OptiFormsChoiceElement_Fragment': _IComponent_OptiFormsChoiceElement_Fragment } }
@@ -4402,6 +4644,8 @@ export type VisualBuilderQuery = { __typename?: 'Query', _Experience?: { __typen
 
 type _IComponent_BlankSection_Fragment = { __typename: 'BlankSection' } & { ' $fragmentName'?: '_IComponent_BlankSection_Fragment' };
 
+type _IComponent_Condition_Fragment = { __typename: 'Condition' } & { ' $fragmentName'?: '_IComponent_Condition_Fragment' };
+
 type _IComponent_OptiFormsChoiceElement_Fragment = { __typename: 'OptiFormsChoiceElement' } & { ' $fragmentName'?: '_IComponent_OptiFormsChoiceElement_Fragment' };
 
 type _IComponent_OptiFormsContainerData_Fragment = (
@@ -4431,7 +4675,7 @@ type _IComponent__Component_Fragment = { __typename: '_Component' } & { ' $fragm
 
 type _IComponent__Section_Fragment = { __typename: '_Section' } & { ' $fragmentName'?: '_IComponent__Section_Fragment' };
 
-export type _IComponentFragment = _IComponent_BlankSection_Fragment | _IComponent_OptiFormsChoiceElement_Fragment | _IComponent_OptiFormsContainerData_Fragment | _IComponent_OptiFormsNumberElement_Fragment | _IComponent_OptiFormsRangeElement_Fragment | _IComponent_OptiFormsResetElement_Fragment | _IComponent_OptiFormsSelectionElement_Fragment | _IComponent_OptiFormsSubmitElement_Fragment | _IComponent_OptiFormsTextareaElement_Fragment | _IComponent_OptiFormsTextboxElement_Fragment | _IComponent_OptiFormsUrlElement_Fragment | _IComponent_ParagraphElement_Fragment | _IComponent__Component_Fragment | _IComponent__Section_Fragment;
+export type _IComponentFragment = _IComponent_BlankSection_Fragment | _IComponent_Condition_Fragment | _IComponent_OptiFormsChoiceElement_Fragment | _IComponent_OptiFormsContainerData_Fragment | _IComponent_OptiFormsNumberElement_Fragment | _IComponent_OptiFormsRangeElement_Fragment | _IComponent_OptiFormsResetElement_Fragment | _IComponent_OptiFormsSelectionElement_Fragment | _IComponent_OptiFormsSubmitElement_Fragment | _IComponent_OptiFormsTextareaElement_Fragment | _IComponent_OptiFormsTextboxElement_Fragment | _IComponent_OptiFormsUrlElement_Fragment | _IComponent_ParagraphElement_Fragment | _IComponent__Component_Fragment | _IComponent__Section_Fragment;
 
 export type FormContainerDataFragment = { __typename?: 'OptiFormsContainerData', SubmitConfirmationMessage?: string | null, ResetConfirmationMessage?: string | null, Title?: string | null, Description?: string | null, ShowSummaryMessageAfterSubmission?: boolean | null, SubmitUrl?: { __typename?: 'ContentUrl', type?: string | null, default?: string | null, hierarchical?: string | null, internal?: string | null, graph?: string | null, base?: string | null } | null } & { ' $fragmentName'?: 'FormContainerDataFragment' };
 
@@ -4443,15 +4687,15 @@ export type SubmitElementFragment = { __typename?: 'OptiFormsSubmitElement', Lab
 
 export type TextareaElementFragment = { __typename?: 'OptiFormsTextareaElement', Label?: string | null, Tooltip?: string | null, Placeholder?: string | null, AutoComplete?: string | null, PredefinedValue?: string | null, Validators?: any | null } & { ' $fragmentName'?: 'TextareaElementFragment' };
 
-export type TextboxElementFragment = { __typename?: 'OptiFormsTextboxElement', Label?: string | null, Tooltip?: string | null, Placeholder?: string | null, AutoComplete?: string | null, PredefinedValue?: string | null, Validators?: any | null } & { ' $fragmentName'?: 'TextboxElementFragment' };
+export type TextboxElementFragment = { __typename?: 'OptiFormsTextboxElement', Label?: string | null, Tooltip?: string | null, Placeholder?: string | null, AutoComplete?: string | null, PredefinedValue?: string | null, Validators?: any | null, SatisfiedAction?: string | null, ConditionCombination?: string | null, Conditions?: Array<{ __typename?: 'ConditionProperty', DependsOnField?: string | null, ComparisonOperator?: string | null, ComparisonValue?: string | null } | null> | null } & { ' $fragmentName'?: 'TextboxElementFragment' };
 
-export const TextboxElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}}]} as unknown as DocumentNode<TextboxElementFragment, unknown>;
+export const TextboxElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Conditions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"DependsOnField"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonOperator"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonValue"}}]}},{"kind":"Field","name":{"kind":"Name","value":"SatisfiedAction"}},{"kind":"Field","name":{"kind":"Name","value":"ConditionCombination"}}]}}]} as unknown as DocumentNode<TextboxElementFragment, unknown>;
 export const TextareaElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}}]} as unknown as DocumentNode<TextareaElementFragment, unknown>;
 export const SelectionElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}}]} as unknown as DocumentNode<SelectionElementFragment, unknown>;
 export const SubmitElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}}]} as unknown as DocumentNode<SubmitElementFragment, unknown>;
 export const ParagraphElementFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<ParagraphElementFragment, unknown>;
-export const CompositionComponentNodeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<CompositionComponentNodeFragment, unknown>;
+export const CompositionComponentNodeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Conditions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"DependsOnField"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonOperator"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonValue"}}]}},{"kind":"Field","name":{"kind":"Name","value":"SatisfiedAction"}},{"kind":"Field","name":{"kind":"Name","value":"ConditionCombination"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<CompositionComponentNodeFragment, unknown>;
 export const FormContainerDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}}]} as unknown as DocumentNode<FormContainerDataFragment, unknown>;
 export const _IComponentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}}]} as unknown as DocumentNode<_IComponentFragment, unknown>;
-export const FormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Forms"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"OptiFormsContainerData"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<FormsQuery, FormsQueryVariables>;
-export const VisualBuilderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"VisualBuilder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_Experience"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<VisualBuilderQuery, VisualBuilderQueryVariables>;
+export const FormsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Forms"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"OptiFormsContainerData"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Conditions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"DependsOnField"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonOperator"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonValue"}}]}},{"kind":"Field","name":{"kind":"Name","value":"SatisfiedAction"}},{"kind":"Field","name":{"kind":"Name","value":"ConditionCombination"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<FormsQuery, FormsQueryVariables>;
+export const VisualBuilderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"VisualBuilder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_Experience"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"grids"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"_IComponent"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"layoutType"}},{"kind":"Field","alias":{"kind":"Name","value":"nodes"},"name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"compositionComponentNode"}}]}}]}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"version"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FormContainerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsContainerData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"SubmitConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"ResetConfirmationMessage"}},{"kind":"Field","name":{"kind":"Name","value":"SubmitUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"default"}},{"kind":"Field","name":{"kind":"Name","value":"hierarchical"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}},{"kind":"Field","name":{"kind":"Name","value":"graph"}},{"kind":"Field","name":{"kind":"Name","value":"base"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Title"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"ShowSummaryMessageAfterSubmission"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textboxElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextboxElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Conditions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"DependsOnField"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonOperator"}},{"kind":"Field","name":{"kind":"Name","value":"ComparisonValue"}}]}},{"kind":"Field","name":{"kind":"Name","value":"SatisfiedAction"}},{"kind":"Field","name":{"kind":"Name","value":"ConditionCombination"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"textareaElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsTextareaElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"PredefinedValue"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"selectionElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSelectionElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}},{"kind":"Field","name":{"kind":"Name","value":"AutoComplete"}},{"kind":"Field","name":{"kind":"Name","value":"Placeholder"}},{"kind":"Field","name":{"kind":"Name","value":"Validators"}},{"kind":"Field","name":{"kind":"Name","value":"Options"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"submitElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OptiFormsSubmitElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Label"}},{"kind":"Field","name":{"kind":"Name","value":"Tooltip"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"paragraphElement"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"_IComponent"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"FormContainerData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"compositionComponentNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textboxElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"textareaElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"selectionElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"submitElement"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"paragraphElement"}}]}}]}}]} as unknown as DocumentNode<VisualBuilderQuery, VisualBuilderQueryVariables>;

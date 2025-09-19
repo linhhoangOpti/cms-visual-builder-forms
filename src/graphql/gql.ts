@@ -20,7 +20,7 @@ const documents = {
     "\nfragment selectionElement on OptiFormsSelectionElement {\n  Label\n  Tooltip\n  AutoComplete\n  Placeholder\n  Validators\n  Options\n}\n": types.SelectionElementFragmentDoc,
     "\nfragment submitElement on OptiFormsSubmitElement {\n  Label\n  Tooltip\n}\n": types.SubmitElementFragmentDoc,
     "\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n": types.TextareaElementFragmentDoc,
-    "\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n": types.TextboxElementFragmentDoc,
+    "\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n": types.TextboxElementFragmentDoc,
 };
 
 /**
@@ -68,7 +68,7 @@ export function graphql(source: "\nfragment textareaElement on OptiFormsTextarea
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n"): (typeof documents)["\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n"];
+export function graphql(source: "\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n"): (typeof documents)["\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
