@@ -7,7 +7,7 @@ interface VisibleState {
     setVisible: (key: string, visible: boolean) => void
 }
 
-const useBearStore = create<VisibleState>()((set) => ({
+const useVisibilityStore = create<VisibleState>()((set) => ({
     visibility: new Map<string, boolean>(),
     setVisible: (key, visible) => set((state) => {
         state.visibility.set(key, visible);
@@ -20,24 +20,34 @@ export class DependencyManager {
 
     registerComponent(key: string, conditions: Condition[] = [], satisfiedAction: string = '', conditionCombination: string = ''): [boolean, (value: any) => void] {
         const onChange = (value: any) => {
-            this.onComponentChange(key, value)
+            this._onComponentValueChange(key, value)
         };
 
-        const { visibility, setVisible } = useBearStore()
+        const { visibility, setVisible } = useVisibilityStore()
+        var dependant = this.dependants.get(key) ?? new Dependant();
 
-        const dependant = new Dependant(conditions, satisfiedAction, conditionCombination, onChange, true, setVisible);
+        dependant.conditions = conditions;
+        dependant.satisfiedAction = satisfiedAction;
+        dependant.conditionCombination = conditionCombination;
+        dependant.onChange = onChange;
+        dependant.setVisible = setVisible;
+
         this.dependants.set(key, dependant);
 
         return [visibility.get(key) ?? true, onChange];
     }
 
-    onComponentChange(key: string, value: any) {
-
+    _onComponentValueChange(key: string, value: any) {
         const dependant = this.dependants.get(key);
         if (dependant) {
             dependant.value = value;
         }
 
+        this.performDependencyCheck();
+    }
+
+    performDependencyCheck() {
+        
         // run checks for all dependants
         this.dependants.forEach((dependant, key) => {
             if (dependant.conditions.length == 0) {
@@ -57,16 +67,16 @@ export class DependencyManager {
                 }
             }
             if (dependant.conditionCombination === "All") {
-                if (dependant.satisfiedAction === "Show") {
+                if (dependant.satisfiedAction === "Shown") {
                     dependant.setVisible(key, allMet);
                 } else {
-                    dependant.setVisible(key, allMet);
+                    dependant.setVisible(key, !anyMet);
                 }
             } else{
-                if (dependant.satisfiedAction === "Show") {
+                if (dependant.satisfiedAction === "Shown") {
                     dependant.setVisible(key, anyMet);
                 } else {
-                    dependant.setVisible(key, anyMet);
+                    dependant.setVisible(key, !anyMet);
                 }
             }
         });

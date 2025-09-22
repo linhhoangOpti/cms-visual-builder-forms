@@ -19,7 +19,7 @@ const documents = {
     "\n    fragment paragraphElement on ParagraphElement {\n        Text {\n            html\n        }\n    }\n": types.ParagraphElementFragmentDoc,
     "\nfragment selectionElement on OptiFormsSelectionElement {\n  Label\n  Tooltip\n  AutoComplete\n  Placeholder\n  Validators\n  Options\n}\n": types.SelectionElementFragmentDoc,
     "\nfragment submitElement on OptiFormsSubmitElement {\n  Label\n  Tooltip\n}\n": types.SubmitElementFragmentDoc,
-    "\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n": types.TextareaElementFragmentDoc,
+    "\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n": types.TextareaElementFragmentDoc,
     "\nfragment textboxElement on OptiFormsTextboxElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n": types.TextboxElementFragmentDoc,
 };
 
@@ -64,7 +64,7 @@ export function graphql(source: "\nfragment submitElement on OptiFormsSubmitElem
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n"): (typeof documents)["\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n}\n"];
+export function graphql(source: "\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n"): (typeof documents)["\nfragment textareaElement on OptiFormsTextareaElement {\n  Label\n  Tooltip\n  Placeholder\n  AutoComplete\n  PredefinedValue\n  Validators\n  Conditions {\n    DependsOnField\n    ComparisonOperator\n    ComparisonValue\n  }\n  SatisfiedAction\n  ConditionCombination\n}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

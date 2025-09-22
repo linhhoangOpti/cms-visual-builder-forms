@@ -94,9 +94,10 @@ interface VisualBuilderProps {
     version?: string;
 }
 
+const dependencyManager = new DependencyManager();
+
 const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey }) => {
     const formState: any = {};
-    const dependencyManager = new DependencyManager();
     
     const variables: Record<string, unknown> = {};
     if (version) {
@@ -120,8 +121,12 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
                 variables.version = version;
             }
             refetch(variables);
-        })
+        });
     }, []);
+
+    useEffect(() => {
+        dependencyManager.performDependencyCheck();
+    }, [data]);
 
     const experiences = data?._Experience?.items;
     if (!experiences) {

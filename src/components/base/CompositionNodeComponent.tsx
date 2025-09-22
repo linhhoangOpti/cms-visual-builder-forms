@@ -32,16 +32,22 @@ const CompositionComponentNodeComponent = (props: {
 }) => {
     const compositionComponentNode = useFragment(CompositionComponentNodeFragment, props.compositionComponentNode)
     const component = compositionComponentNode.component
+    const dependant = component as any;
 
-    const [visible, onChange] = props.dependencyManager?.registerComponent((props.compositionComponentNode as any).key, (component as any).Conditions) ?? [true, () => {}]
-    
+    const [visible, onChange] = props.dependencyManager?.registerComponent(
+        (props.compositionComponentNode as any).key,
+        dependant.Conditions,
+        dependant.SatisfiedAction,
+        dependant.ConditionCombination,
+    ) || [true, () => {}];
+
     switch (component?.__typename) {
         case "OptiFormsTextboxElement":
             return <TextboxElementComponent textboxElement={component} formState={props.formState} onChange={onChange} visible={visible} />
         case "OptiFormsTextareaElement":
-            return <TextareaElementComponent textareElement={component} formState={props.formState}/>
+            return <TextareaElementComponent textareElement={component} formState={props.formState} onChange={onChange} visible={visible} />
         case "OptiFormsSelectionElement":
-            return <SelectionElementComponent selectionElement={component} formState={props.formState}/>
+            return <SelectionElementComponent selectionElement={component} formState={props.formState} onChange={onChange} visible={visible}/>
         case "OptiFormsSubmitElement":
             return <SubmitElementComponent submitElement={component} formState={props.formState}/>
         case "ParagraphElement":

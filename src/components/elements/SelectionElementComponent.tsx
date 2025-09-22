@@ -24,13 +24,18 @@ fragment selectionElement on OptiFormsSelectionElement {
 
 const SelectionElementComponent = (props: {
   selectionElement: FragmentType<typeof SelectionElementComponentNodeFragment>,
+  onChange?: (value: any) => void,
+  visible: boolean,
   formState?: any
 }) => {
   const node = useFragment(SelectionElementComponentNodeFragment, props.selectionElement)
   const Options = node.Options || []
   return (<>
     <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
-    <Select onValueChange={(value) => props.formState[node.Label!] = value}>
+    <Select onValueChange={(value) => {
+      props.formState[node.Label!] = value;
+      props.onChange?.(value);
+    }}>
 
       <SelectTrigger>
         <SelectValue placeholder={node.Placeholder ?? ""} />
