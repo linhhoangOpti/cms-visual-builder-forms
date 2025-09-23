@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, use, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { graphql } from '@/graphql'
@@ -6,6 +6,7 @@ import CompositionNodeComponent from './CompositionNodeComponent'
 import { onContentSaved } from "@/helpers/onContentSaved";
 import FormsComponent from './FormsComponent';
 import { DependencyManager } from '@/dependency/DependencyManager';
+import { useParams } from 'react-router-dom';
 
 export const VisualBuilder = graphql(/* GraphQL */ `
 query VisualBuilder($key: String, $version: String) {
@@ -159,7 +160,7 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
 
 export default VisualBuilderComponent
 
-export const RenderCompositionNode = (node: any, formState?: any, dependencyManager?: DependencyManager): JSX.Element | null => {
+export const RenderCompositionNode = (node: any, formState?: any, dependencyManager?: DependencyManager, isEdit?: boolean): JSX.Element | null => {
     if (!node || !node.__typename) {
         return null;
     }
@@ -178,28 +179,28 @@ export const RenderCompositionNode = (node: any, formState?: any, dependencyMana
             case "section":
                 return (
                     <div key={key} className="flex flex-col vb:section" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
             case "step":
                 return (
                     <div key={key} className="flex flex-col vb:step" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
             case "row":
                 return (
                     <div key={key} className="flex flex-row flex-wrap justify-start vb:row gap-4" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
             case "column":
                 return (
                     <div key={key} className="flex-1 flex flex-col flex-nowrap justify-start vb:col" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
@@ -207,7 +208,7 @@ export const RenderCompositionNode = (node: any, formState?: any, dependencyMana
                 // Handle any other nodeType or fallback to generic structure
                 return (
                     <div key={key} className="flex flex-col vb:generic" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
         }
@@ -215,8 +216,11 @@ export const RenderCompositionNode = (node: any, formState?: any, dependencyMana
 
     // Handle CompositionComponentNode (leaf elements)
     if (node.__typename === "CompositionComponentNode" || node.component) {
+        const dependant = node.component as any;
+        const shouldHighlight = isEdit && dependant?.Conditions && dependant?.Conditions.length > 0;
+
         return (
-            <div key={node.key} data-epi-block-id={node.key}>
+            <div key={node.key} data-epi-block-id={node.key} className={shouldHighlight ? 'dependant-highlight' : ''}>
                 <CompositionNodeComponent compositionComponentNode={node} formState={formState} key={node.key} dependencyManager={dependencyManager} />
             </div>
         );

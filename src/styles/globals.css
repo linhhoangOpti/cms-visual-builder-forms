@@ -107,3 +107,11 @@ body {
 h2 {
   font-size: 30px;
 }
+
+div[data-epi-block-id] {
+  margin: 2px 0;
+}
+
+.dependant-highlight {
+  border: 1px dashed red;
+}
