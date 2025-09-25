@@ -1,10 +1,12 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, use, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { graphql } from '@/graphql'
 import CompositionNodeComponent from './CompositionNodeComponent'
 import { onContentSaved } from "@/helpers/onContentSaved";
 import FormsComponent from './FormsComponent';
+import { DependencyManager } from '@/dependency/DependencyManager';
+import { useParams } from 'react-router-dom';
 
 export const VisualBuilder = graphql(/* GraphQL */ `
 query VisualBuilder($key: String, $version: String) {
@@ -93,8 +95,11 @@ interface VisualBuilderProps {
     version?: string;
 }
 
+const dependencyManager = new DependencyManager();
+
 const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey }) => {
     const formState: any = {};
+    
     const variables: Record<string, unknown> = {};
     if (version) {
         variables.version = version;
@@ -117,8 +122,12 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
                 variables.version = version;
             }
             refetch(variables);
-        })
+        });
     }, []);
+
+    useEffect(() => {
+        dependencyManager.performDependencyCheck();
+    }, [data]);
 
     const experiences = data?._Experience?.items;
     if (!experiences) {
@@ -141,7 +150,7 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
                 {experience?.composition?.grids?.map((grid: any) =>
                     <div key={grid.key} className="relative w-lg flex flex-col flex-nowrap justify-start vb:grid"
                         data-epi-block-id={grid.key}>
-                        {RenderCompositionNode(grid, formState)}
+                        {RenderCompositionNode(grid, formState, dependencyManager)}
                     </div>
                 )}
             </div>
@@ -151,7 +160,7 @@ const VisualBuilderComponent: FC<VisualBuilderProps> = ({ version, contentKey })
 
 export default VisualBuilderComponent
 
-export const RenderCompositionNode = (node: any, formState?: any): JSX.Element | null => {
+export const RenderCompositionNode = (node: any, formState?: any, dependencyManager?: DependencyManager, isEdit?: boolean): JSX.Element | null => {
     if (!node || !node.__typename) {
         return null;
     }
@@ -170,28 +179,28 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
             case "section":
                 return (
                     <div key={key} className="flex flex-col vb:section" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
             case "step":
                 return (
                     <div key={key} className="flex flex-col vb:step" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
             case "row":
                 return (
                     <div key={key} className="flex flex-row flex-wrap justify-start vb:row gap-4" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
             case "column":
                 return (
                     <div key={key} className="flex-1 flex flex-col flex-nowrap justify-start vb:col" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
 
@@ -199,7 +208,7 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
                 // Handle any other nodeType or fallback to generic structure
                 return (
                     <div key={key} className="flex flex-col vb:generic" data-epi-block-id={key}>
-                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState))}
+                        {nodes?.map((childNode: any) => RenderCompositionNode(childNode, formState, dependencyManager, isEdit))}
                     </div>
                 );
         }
@@ -207,9 +216,12 @@ export const RenderCompositionNode = (node: any, formState?: any): JSX.Element |
 
     // Handle CompositionComponentNode (leaf elements)
     if (node.__typename === "CompositionComponentNode" || node.component) {
+        const dependant = node.component as any;
+        const shouldHighlight = isEdit && dependant?.Conditions && dependant?.Conditions.length > 0;
+
         return (
-            <div key={node.key} data-epi-block-id={node.key}>
-                <CompositionNodeComponent compositionComponentNode={node} formState={formState}/>
+            <div key={node.key} data-epi-block-id={node.key} className={shouldHighlight ? 'dependant-highlight' : ''}>
+                <CompositionNodeComponent compositionComponentNode={node} formState={formState} key={node.key} dependencyManager={dependencyManager} />
             </div>
         );
     }

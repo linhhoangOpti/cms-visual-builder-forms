@@ -12,23 +12,35 @@ fragment textareaElement on OptiFormsTextareaElement {
   AutoComplete
   PredefinedValue
   Validators
+  Conditions {
+    DependsOnField
+    ComparisonOperator
+    ComparisonValue
+  }
+  SatisfiedAction
+  ConditionCombination
 }
 `)
 
 const TextareaElementComponent = (props: {
     textareElement: FragmentType<typeof TextareaComponentNodeFragment>,
+    visible: boolean,
+    onChange?: (value: any) => void,
     formState?: any
 }) => {
     const node = useFragment(TextareaComponentNodeFragment, props.textareElement)
     
     return (
         <>
-            <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
-            <Textarea
-                autoComplete={node.AutoComplete ? 'on' : 'off'}
-                placeholder={node.Placeholder ?? ''}
-                onChange={(e) => props.formState[node.Label!] = e.target.value}
-            />
+            { props.visible &&
+            <>
+                <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
+                <Textarea
+                    autoComplete={node.AutoComplete ? 'on' : 'off'}
+                    placeholder={node.Placeholder ?? ''}
+                    onChange={(e) => props.formState[node.Label!] = e.target.value}
+                />
+            </>}
         </>
     )
 }
