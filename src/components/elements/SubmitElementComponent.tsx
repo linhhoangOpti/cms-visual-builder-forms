@@ -13,7 +13,8 @@ fragment submitElement on OptiFormsSubmitElement {
 
 const SubmitElementComponent = (props: {
     submitElement: FragmentType<typeof SubmitElementComponentNodeFragment>,
-    formState?: any
+    formState?: any,
+    onSubmit: (formState: any) => void
 }) => {
     const node = useFragment(SubmitElementComponentNodeFragment, props.submitElement)
 
@@ -21,14 +22,8 @@ const SubmitElementComponent = (props: {
         <>
             <div><br /></div>
             <Button onClick={(e) => {
-                console.log(props.formState)
-                axios.post((window as any).submitUrl, props.formState)
-                .then(response => {
-                    alert('Form submitted successfully!');
-                })
-                .catch(error => {
-                    console.error('Error submitting form:', error);
-                });
+                e.preventDefault();
+                props.onSubmit(props.formState);
             }}>
                 {node.Label}
             </Button>

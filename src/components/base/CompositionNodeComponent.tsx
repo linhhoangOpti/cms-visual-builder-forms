@@ -8,6 +8,7 @@ import ParagraphElementComponent from '../elements/ParagraphElementComponent'
 import { DependencyManager } from '@/dependency/DependencyManager'
 
 import { create } from 'zustand'
+import axios from 'axios'
 
 export const CompositionComponentNodeFragment = graphql(/* GraphQL */ `
 fragment compositionComponentNode on CompositionComponentNode {
@@ -39,7 +40,23 @@ const CompositionComponentNodeComponent = (props: {
         dependant.Conditions,
         dependant.SatisfiedAction,
         dependant.ConditionCombination,
+        dependant.Label
     ) || [true, () => {}];
+
+    const onSubmit = (formState: any) => {
+        
+        const filtered = props.dependencyManager?.filterInactiveElements(formState) || formState;
+        console.log(filtered);
+
+        axios.post((window as any).submitUrl, filtered)
+        .then(response => {
+            alert('Form submitted successfully!');
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+        });
+
+    };
 
     switch (component?.__typename) {
         case "OptiFormsTextboxElement":
@@ -49,7 +66,7 @@ const CompositionComponentNodeComponent = (props: {
         case "OptiFormsSelectionElement":
             return <SelectionElementComponent selectionElement={component} formState={props.formState} onChange={onChange} visible={visible}/>
         case "OptiFormsSubmitElement":
-            return <SubmitElementComponent submitElement={component} formState={props.formState}/>
+            return <SubmitElementComponent submitElement={component} formState={props.formState} onSubmit={onSubmit}/>
         case "ParagraphElement":
             return <ParagraphElementComponent paragraphElement={component} />
         default:

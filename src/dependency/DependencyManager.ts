@@ -18,7 +18,7 @@ const useVisibilityStore = create<VisibleState>()((set) => ({
 export class DependencyManager {
     dependants: Map<string, Dependant> = new Map<string, Dependant>()
 
-    registerComponent(key: string, conditions: Condition[] = [], satisfiedAction: string = '', conditionCombination: string = ''): [boolean, (value: any) => void] {
+    registerComponent(key: string, conditions: Condition[] = [], satisfiedAction: string = '', conditionCombination: string = '', label: string = ''): [boolean, (value: any) => void] {
         const onChange = (value: any) => {
             this._onComponentValueChange(key, value)
         };
@@ -26,6 +26,7 @@ export class DependencyManager {
         const { visibility, setVisible } = useVisibilityStore()
         var dependant = this.dependants.get(key) ?? new Dependant();
 
+        dependant.label = label;
         dependant.conditions = conditions;
         dependant.satisfiedAction = satisfiedAction;
         dependant.conditionCombination = conditionCombination;
@@ -35,6 +36,16 @@ export class DependencyManager {
         this.dependants.set(key, dependant);
 
         return [visibility.get(key) ?? true, onChange];
+    }
+
+    filterInactiveElements(formState: any) {
+        this.dependants.forEach((dependant, key) => {
+            if (!dependant.visible) {
+                delete formState[dependant.label];
+            }
+        });
+
+        return formState;
     }
 
     _onComponentValueChange(key: string, value: any) {
@@ -68,15 +79,15 @@ export class DependencyManager {
             }
             if (dependant.conditionCombination === "All") {
                 if (dependant.satisfiedAction === "Shown") {
-                    dependant.setVisible(key, allMet);
+                    dependant.onVisibleChange(key, allMet);
                 } else {
-                    dependant.setVisible(key, !anyMet);
+                    dependant.onVisibleChange(key, !anyMet);
                 }
             } else{
                 if (dependant.satisfiedAction === "Shown") {
-                    dependant.setVisible(key, anyMet);
+                    dependant.onVisibleChange(key, anyMet);
                 } else {
-                    dependant.setVisible(key, !anyMet);
+                    dependant.onVisibleChange(key, !anyMet);
                 }
             }
         });
