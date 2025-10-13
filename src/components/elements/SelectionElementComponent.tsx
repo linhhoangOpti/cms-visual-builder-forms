@@ -16,6 +16,7 @@ fragment selectionElement on OptiFormsSelectionElement {
   Label
   Tooltip
   AutoComplete
+  Placeholder
   Validators
   Options
 }
@@ -32,7 +33,7 @@ const SelectionElementComponent = (props: {
     <Select onValueChange={(value) => props.formState[node.Label!] = value}>
 
       <SelectTrigger>
-        <SelectValue placeholder="Country" />
+        <SelectValue placeholder={node.Placeholder ?? ""} />
       </SelectTrigger>
       <SelectContent>
         {Options.map((option: any, index: number) => (
