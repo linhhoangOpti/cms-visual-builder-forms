@@ -7,6 +7,7 @@ import { isRequiredValidator } from '@/helpers/validatorHelper'
 export const TextboxComponentNodeFragment = graphql(/* GraphQL */ `
 fragment textboxElement on OptiFormsTextboxElement {
   Label
+  SubmissionFieldName
   Tooltip
   Placeholder
   AutoComplete
@@ -20,15 +21,16 @@ const TextboxElementComponent = (props: {
     formState?: any
 }) => {
     const node = useFragment(TextboxComponentNodeFragment, props.textboxElement)
-    
+
     return (
         <div>
             <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
             <Input
                 type='text'
+                name={node.SubmissionFieldName ?? ''}
                 autoComplete={node.AutoComplete ? 'on' : 'off'}
                 placeholder={node.Placeholder ?? ''}
-                onChange={(e) => props.formState[node.Label!] = e.target.value }
+                onChange={(e) => props.formState[node.SubmissionFieldName!] = e.target.value }
             />
         </div>
     )

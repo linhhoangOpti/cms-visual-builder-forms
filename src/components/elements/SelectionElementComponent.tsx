@@ -14,6 +14,7 @@ import { isRequiredValidator } from '@/helpers/validatorHelper'
 export const SelectionElementComponentNodeFragment = graphql(/* GraphQL */ `
 fragment selectionElement on OptiFormsSelectionElement {
   Label
+  SubmissionFieldName
   Tooltip
   AutoComplete
   Placeholder
@@ -30,7 +31,7 @@ const SelectionElementComponent = (props: {
   const Options = node.Options || []
   return (<>
     <Label>{node.Label} <span className='form-element-required'>{isRequiredValidator(node.Validators) ? "*" : ""}</span></Label>
-    <Select onValueChange={(value) => props.formState[node.Label!] = value}>
+    <Select name={node.SubmissionFieldName ?? ''} onValueChange={(value) => props.formState[node.SubmissionFieldName!] = value}>
 
       <SelectTrigger>
         <SelectValue placeholder={node.Placeholder ?? ""} />
